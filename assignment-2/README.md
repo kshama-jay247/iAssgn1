@@ -62,4 +62,4 @@ docker run -d --name web --network webnet -p 8080:80 web_image
 ```
 
 ## Output 
-![Static Web Page](imge.png)
+![Static Web Page](image.png)
