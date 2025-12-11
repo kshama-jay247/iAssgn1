@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web + API Docker Demo</title>
+    <style>
+      .contents {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+        border-radius: 10px;
+        background-color: #92cfee;
+        cursor: pointer;
+      }
+      #api-response {
+        max-width: 80vw;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contents">
+      <h1>Web + API via Docker Network</h1>
+      <p>This static page is served by Nginx in the web container</p>
+      <button id="call-api">Call API</button>
+      <p>API response:</p>
+      <pre id="api-response"></pre>
+    </div>
+
+    <script>
+      const btn = document.getElementById("call-api");
+      const out = document.getElementById("api-response");
+
+      btn.addEventListener("click", async () => {
+        try {
+          const res = await fetch("/api");
+          const text = await res.text();
+          out.textContent = text;
+        } catch (err) {
+          out.textContent = "Error calling API: " + err;
+        }
+      });
+    </script>
+  </body>
+</html>
